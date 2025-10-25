@@ -21,8 +21,6 @@
     </header>
 
     <main>
-        <section id="book-list" class="book-list"></section>
-
         <section class="form-section">
             <h2>Add / Edit Book</h2>
             <form id="book-form">
@@ -36,9 +34,7 @@
                 <input id="year" name="year" type="number" required min="0" />
 
                 <label for="genre">Genre:</label>
-                <select id="choose-genre">
-                    <option value="">All genres</option>
-                </select>
+                <input id="genre" name="genre" type="text" required />
 
                 <label for="rating">Rating (1–5):</label>
                 <input id="rating" name="rating" type="number" required min="1" max="5" />
@@ -47,13 +43,32 @@
             </form>
             <p id="form-message" class="message"></p>
         </section>
+
+        <section class="table-section">
+            <table class="book-table">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Year</th>
+                        <th>Genre</th>
+                        <th>Rating</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="book-list">
+                    <!-- JS додає рядки сюди -->
+                </tbody>
+            </table>
+        </section>
+
     </main>
 
     <footer>
         <p>© 2025 My Library App</p>
     </footer>
 
-    <script src="..\scr\app.js"></script>
+    <script src="../src/app.js"></script>
 </body>
 
 </html>
