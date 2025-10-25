@@ -32,11 +32,13 @@ function loadBooks() {
 }
 
 //для рендеру таблиці
-function renderBooks() {
+function renderBooks(filterGenre = '') {
     const tbody = document.getElementById('book-list');
     tbody.innerHTML = '';
 
     books.forEach(book => {
+        if (filterGenre && book.genre !== filterGenre) return
+
         const tr = document.createElement('tr');
         tr.innerHTML = `
             <td>${book.title}</td>
@@ -61,9 +63,10 @@ document.getElementById('book-form').addEventListener('submit', function (e) {
     const newBook = new Book(title, author, year, genre, rating);
     books.push(newBook);
 
-    renderBooks();
+    renderBooks(genreSelect.value);
     saveBooks();
     this.reset();
+    populateGenres();
 
     const msg = document.getElementById('form-message');
     msg.textContent = `Book "${title}" added!`;
@@ -82,6 +85,7 @@ fetch('data.json')
         books = data;
         renderBooks();
         saveBooks();
+        populateGenres();
     }).catch(err => console.error('Error loading data.json:', err));
 
 //видалення книги
@@ -90,8 +94,9 @@ document.getElementById('book-list').addEventListener('click', function (e) {
         const row = e.target.closest('tr');
         const titleToDelete = row.children[0].textContent;
         books = books.filter(book => book.title !== titleToDelete);
-        renderBooks();
+        renderBooks(genreSelect.value);
         saveBooks();
+        populateGenres();
 
         const msg = document.getElementById('form-message');
         msg.textContent = `Book "${titleToDelete}" deleted!`;
@@ -101,3 +106,67 @@ document.getElementById('book-list').addEventListener('click', function (e) {
 });
 
 window.addEventListener('load', loadBooks);
+
+//сортування де є букви і цифри
+function sortTable(columnIndex, type = 'str') {
+    const table = document.getElementById("book-table");
+
+    let switching = true;
+    while (switching) {
+        switching = false;
+        const rows = table.rows;
+        for (let i = 1; i < rows.length - 1; i++) {
+            let shouldSwitch = false;
+            const x = rows[i].getElementsByTagName("TD")[columnIndex];
+            const y = rows[i + 1].getElementsByTagName("TD")[columnIndex];
+
+            if (!x || !y) continue;
+
+            let xVal = type === 'num' ? Number(x.textContent) : x.textContent.toLowerCase();
+            let yVal = type === 'num' ? Number(y.textContent) : y.textContent.toLowerCase();
+
+            if (xVal > yVal) {
+                shouldSwitch = true;
+            }
+
+            if (shouldSwitch) {
+                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                switching = true;
+                break;
+            }
+        }
+    }
+}
+
+//фільтрація за жанром
+function populateGenres() {
+    const select = document.getElementById('filter-genre');
+
+    const bookGenres = books.map(b => b.genre);
+
+    const extraGenres = ["Science Fiction", "Biography", "Mystery", "Romance"];
+
+    const allGenres = [...new Set([...bookGenres, ...extraGenres])];
+
+    select.innerHTML = '<option value="">All genres</option>';
+
+    allGenres.forEach(genre => {
+        const option = document.createElement('option');
+        option.value = genre;
+        option.textContent = genre;
+        select.appendChild(option);
+    });
+}
+
+populateGenres();
+
+//обробник зміни фільтра жанру
+const genreSelect = document.getElementById('filter-genre');
+genreSelect.addEventListener('change', function () {
+    const selectedGenre = this.value;
+    renderBooks(selectedGenre);
+});
+
+
+
+
