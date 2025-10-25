@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book Library</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <header>
+        <h1>My Library</h1>
+        <nav>
+            <button id="sort-year">Sort by Year</button>
+            <button id="sort-rating">Sort by Rating</button>
+            <select id="filter-genre">
+                <option value="">All genres</option>
+            </select>
+        </nav>
+    </header>
+
+    <main>
+        <section id="book-list" class="book-list"></section>
+
+        <section class="form-section">
+            <h2>Add / Edit Book</h2>
+            <form id="book-form">
+                <label for="title">Title:</label>
+                <input id="title" name="title" type="text" required />
+
+                <label for="author">Author:</label>
+                <input id="author" name="author" type="text" required />
+
+                <label for="year">Year:</label>
+                <input id="year" name="year" type="number" required min="0" />
+
+                <label for="genre">Genre:</label>
+                <select id="choose-genre">
+                    <option value="">All genres</option>
+                </select>
+
+                <label for="rating">Rating (1–5):</label>
+                <input id="rating" name="rating" type="number" required min="1" max="5" />
+
+                <button type="submit">Save</button>
+            </form>
+            <p id="form-message" class="message"></p>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 My Library App</p>
+    </footer>
+
+    <script src="..\scr\app.js"></script>
+</body>
+
+</html>
