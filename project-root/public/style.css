@@ -25,6 +25,7 @@ header nav {
     display: flex;
     gap: 0.5rem;
     flex-wrap: wrap;
+    align-items: left;
 }
 
 main {
@@ -33,6 +34,7 @@ main {
     display: grid;
     gap: 2rem;
 }
+
 
 
 .book-table {
@@ -78,10 +80,22 @@ label {
 
 }
 
-input:focus,
-select:focus {
-    outline: 3px solid var(--accent-color);
+input,
+select {
+    padding: 15px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1, 7rem;
+    box-sizing: border-box;
 }
+
+input:focus,
+select:focus,
+option:focus {
+    outline: 3px solid var(--accent-color);
+    text-align: left;
+}
+
 
 .message {
     color: red;
@@ -102,10 +116,24 @@ select:focus {
     background-color: #e60000;
 }
 
+button[type="submit"] {
+    background-color: #4CAF50;
+    /* green */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+button[type="submit"]:hover {
+    background-color: #5fa562;
+    transform: scale(1.005);
+}
+
 @media (max-width: 600px) {
-    header nav {
-        flex-direction: column;
-    }
 
     .book-table th,
     .book-table td {
