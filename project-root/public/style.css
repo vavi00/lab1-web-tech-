@@ -38,7 +38,7 @@ main {
 .book-table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 1rem;
+    margin-top: 0, 5rem;
 }
 
 .book-table th,
@@ -67,20 +67,20 @@ main {
 form {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
-    max-width: 1000px;
+    gap: 0.3rem;
+    max-width: 700px;
     margin: 0 auto;
 }
 
 label {
     font-weight: bold;
-    margin-bottom: 0.3rem;
+    margin-bottom: 0.2rem;
 
 }
 
 input:focus,
 select:focus {
-    outline: 2px solid var(--accent-color);
+    outline: 3px solid var(--accent-color);
 }
 
 .message {
@@ -113,7 +113,7 @@ select:focus {
     }
 
     .book-table {
-        font-size: 0.9rem;
+        font-size: 1rem;
     }
 
 }
