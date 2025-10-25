@@ -12,8 +12,8 @@
     <header>
         <h1>My Library</h1>
         <nav>
-            <button id="sort-year">Sort by Year</button>
-            <button id="sort-rating">Sort by Rating</button>
+            <button onclick="sortTable(0)" id="sort-name">Sort by Name</button>
+            <button onclick="sortTable(4, 'num')" id="sort-rating">Sort by Rating</button>
             <select id="filter-genre">
                 <option value="">All genres</option>
             </select>
@@ -45,14 +45,14 @@
         </section>
 
         <section class="table-section">
-            <table class="book-table">
+            <table id="book-table" , class="book-table">
                 <thead>
                     <tr>
-                        <th>Title</th>
-                        <th>Author</th>
-                        <th>Year</th>
-                        <th>Genre</th>
-                        <th>Rating</th>
+                        <th onclick="sortTable(0)">Title</th>
+                        <th onclick="sortTable(1)">Author</th>
+                        <th onclick="sortTable(2,'num')">Year</th>
+                        <th onclick="sortTable(3)">Genre</th>
+                        <th onclick="sortTable(4,'num')">Rating</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
