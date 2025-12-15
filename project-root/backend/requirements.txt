@@ -2,3 +2,5 @@ fastapi
 uvicorn
 sqlalchemy
 pydantic
+
+#було використано останні версії бібліотек
